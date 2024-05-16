@@ -61,5 +61,7 @@ body {
 }
 
 .task-item-text {
-    text-align: right;
+    text-align: left;
+    flex-grow: 1;
 }
+

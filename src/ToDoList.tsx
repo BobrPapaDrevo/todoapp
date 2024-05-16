@@ -1,8 +1,11 @@
-import React, { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import "./style.css"
+import {useLocalStorage} from "usehooks-ts"
+
+const storageKey = "todos"
 
 function ToDoList() {
-    const [tasks, setTasks] = useState(["Eat breakfast", "Take a shit", "Stretch my ballsack"]);
+    const [tasks, setTasks] = useLocalStorage(storageKey, Array<string>);
     const [newTask, setNewTask] = useState("");
 
     const inputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -42,7 +45,7 @@ function ToDoList() {
     return (
         <>
             <div>
-                <h1>To do app :)</h1>
+                <h1>To do app 🦫</h1>
                 <div>
                     <input className="input input-field" type="text" placeholder="new task" value={newTask} onChange={inputChange} />
                     <button className="input btn btn--success" onClick={addTask}>Add</button>
@@ -52,7 +55,6 @@ function ToDoList() {
                 {tasks.map((value, index) => 
                     <li className="task-item" key={index}>
                         <span className="task-item-text">{value}</span>
-                        <button className="input btn">✏️</button>
                         <button className="input btn" onClick={() => moveUp(index)}>👆</button>
                         <button className="input btn" onClick={() => moveDown(index)}>👇</button>
                         <button className="input btn btn--danger" onClick={() => deleteTask(index)}>🗑️</button>
