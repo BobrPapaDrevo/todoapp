@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "./style.css"
 import {useLocalStorage} from "usehooks-ts"
 
@@ -42,6 +42,11 @@ function ToDoList() {
         setTasks(updated)
     }
 
+    document.addEventListener('keydown', function(event) {
+        if (!(event.key == "Enter")) return;
+        addTask();
+    });
+    
     return (
         <>
             <div>
